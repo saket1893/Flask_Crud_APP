@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Edit Form</title>
+  <style>
+    body {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Simple Form</h1>
+    <form method="POST">
+      <div class="form-group">
+        <label for="name">Config label</label>
+        <input type="text" class="form-control" disabled value="{{response[0].config_label}}" id="label" name="config_label" placeholder="Enter config label" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="email">Config name</label>
+        <input type="text" class="form-control" disabled value="{{response[0].config_name}}" id="name" name="config_name" placeholder="Enter config name" autocomplete="off">
+      </div>
+	  <div class="form-group">
+        <label for="email">Config type</label>
+        <input type="text" class="form-control" value="{{response[0].config_type}}" id="type" name="config_type" placeholder="Enter config type" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="message">Config value</label>
+        <input type="text" class="form-control" value="{{response[0].config_value}}" id="type" name="config_value" placeholder="Enter config value" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <div style="height:35px";></div>
+	{% if msg %}
+	<div class="container">
+	<p style="display:block;color:crimson";> {{msg}} </p>
+	</div>
+	{% endif %}
+  <div style="height:35px";></div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

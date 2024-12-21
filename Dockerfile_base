@@ -1,0 +1,14 @@
+FROM alpine:latest
+RUN apk update
+RUN apk add py-pip
+RUN apk add --no-cache python3-dev 
+#RUN pip install --upgrade pip
+#RUN pip install requests
+#RUN pip install redis
+WORKDIR /app
+COPY . /app
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 5001
+#ENV FLASK_ENV=development
+ENV FLASK_ENV=development
+CMD ["python","app.py"]
