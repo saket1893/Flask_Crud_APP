@@ -1,7 +1,6 @@
 import datetime
 from datetime import datetime, timedelta, time
 from flask_cors import CORS
-import multibase
 from flask import Flask, url_for
 from flask import request, render_template, redirect, Response, session, jsonify
 import requests
@@ -14,8 +13,6 @@ import threading
 import time
 from flask import Flask, send_file
 import redis
-from io import BytesIO
-from PIL import Image
 
 
 app = Flask(__name__)
@@ -285,31 +282,6 @@ def name_set():
 #     except Exception as e:
 #         return str(e)
 
-
-@app.route('/show_json')
-def show_json():
-    try:
-        with open("dumpdata.txt", "r") as f:
-            file_content = f.read()
-            json_data = json.loads(file_content)
-            start_time = int(datetime.today().timestamp())
-            if json_data:
-                threads = []
-                for item in json_data:
-                    thread = threading.Thread(target=set_activity, args=(item,))
-                    threads.append(thread)
-                    thread.start()
-                for thread in threads:
-                    thread.join()
-                    logging.debug(f"Processing item {set_activity}: {item}")
-                return jsonify({"message": "Activities set successfully.",
-                                "time_taken": int(datetime.today().timestamp() - start_time)})
-            else:
-                return jsonify({"error": "No data found."}), 404
-    except FileNotFoundError:
-        return jsonify({"error": "File not found."}), 404
-    except json.JSONDecodeError:
-        return jsonify({"error": "Invalid JSON format in the file."}), 400
 
 
 if __name__ == "__main__":
