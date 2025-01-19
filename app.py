@@ -271,19 +271,6 @@ def name_set():
         return str(e)
 
 
-# @app.route('/get_session')
-# def get_session_1():
-#     try:
-#         print("Saket")
-#         username = session.get('username')
-#         print(username)
-#         if username:
-#             return f"session variable is {username}"
-#     except Exception as e:
-#         return str(e)
-
-
-
 if __name__ == "__main__":
     app.run('0.0.0.0', 5000, debug=True)
 
